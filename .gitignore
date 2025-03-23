@@ -1,0 +1,14 @@
+# IDE files
+**/xcuserdata/
+target/
+.bin/*
+*.orig
+imgs/all
+.DS_Store
+DerivedData/
+.build/
+xcuserdata/
+
+#Swift PM
+.swiftpm/config/registries.json
+.swiftpm/xcode/package.xcworkspace/contents.xcworkspacedata
