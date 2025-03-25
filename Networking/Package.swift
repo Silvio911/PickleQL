@@ -12,7 +12,8 @@ let package = Package(
             targets: ["Networking"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/apollographql/apollo-ios.git", exact: "1.18.0")
+        .package(url: "https://github.com/apollographql/apollo-ios.git", exact: "1.18.0"),
+        .package(path: "PickleAPI")
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
@@ -20,7 +21,8 @@ let package = Package(
         .target(
             name: "Networking",
             dependencies: [
-                .product(name: "Apollo", package: "apollo-ios")
+                .product(name: "Apollo", package: "apollo-ios"),
+                .product(name: "PickleAPI", package: "PickleAPI")
             ]
         ),
         .testTarget(

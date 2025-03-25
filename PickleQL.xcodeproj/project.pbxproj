@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		A37FA4072D933AB5000E9273 /* Networking in Frameworks */ = {isa = PBXBuildFile; productRef = A37FA4062D933AB5000E9273 /* Networking */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		A39B1E802D90AA17009347CC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -53,6 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A37FA4072D933AB5000E9273 /* Networking in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,12 +71,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A37FA4052D933AB5000E9273 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		A39B1E602D90AA15009347CC = {
 			isa = PBXGroup;
 			children = (
 				A371CB302D92B83A0055802D /* Networking */,
 				A39B1E6B2D90AA15009347CC /* PickleQL */,
 				A39B1E822D90AA17009347CC /* PickleQLTests */,
+				A37FA4052D933AB5000E9273 /* Frameworks */,
 				A39B1E6A2D90AA15009347CC /* Products */,
 			);
 			sourceTree = "<group>";
@@ -105,6 +118,7 @@
 			);
 			name = PickleQL;
 			packageProductDependencies = (
+				A37FA4062D933AB5000E9273 /* Networking */,
 			);
 			productName = PickleQL;
 			productReference = A39B1E692D90AA15009347CC /* PickleQL.app */;
@@ -161,6 +175,9 @@
 			);
 			mainGroup = A39B1E602D90AA15009347CC;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				A328E3FA2D934D8A00946467 /* XCLocalSwiftPackageReference "Networking/PickleAPI" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = A39B1E6A2D90AA15009347CC /* Products */;
 			projectDirPath = "";
@@ -471,6 +488,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		A328E3FA2D934D8A00946467 /* XCLocalSwiftPackageReference "Networking/PickleAPI" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Networking/PickleAPI;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A37FA4062D933AB5000E9273 /* Networking */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Networking;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = A39B1E612D90AA15009347CC /* Project object */;
 }
