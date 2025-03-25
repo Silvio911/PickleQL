@@ -17,6 +17,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A371CB302D92B83A0055802D /* Networking */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Networking; sourceTree = "<group>"; };
 		A39B1E692D90AA15009347CC /* PickleQL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PickleQL.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A39B1E7F2D90AA17009347CC /* PickleQLTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PickleQLTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -68,6 +69,7 @@
 		A39B1E602D90AA15009347CC = {
 			isa = PBXGroup;
 			children = (
+				A371CB302D92B83A0055802D /* Networking */,
 				A39B1E6B2D90AA15009347CC /* PickleQL */,
 				A39B1E822D90AA17009347CC /* PickleQLTests */,
 				A39B1E6A2D90AA15009347CC /* Products */,
