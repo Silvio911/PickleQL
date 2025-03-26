@@ -1,5 +1,4 @@
 // swift-tools-version: 5.10
-// The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
 
@@ -13,6 +12,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/apollographql/apollo-ios.git", exact: "1.18.0"),
+        .package(path: "Interfaces"),
         .package(path: "PickleAPI")
     ],
     targets: [
@@ -22,6 +22,7 @@ let package = Package(
             name: "Networking",
             dependencies: [
                 .product(name: "Apollo", package: "apollo-ios"),
+                .product(name: "Interfaces", package: "Interfaces"),
                 .product(name: "PickleAPI", package: "PickleAPI")
             ]
         ),

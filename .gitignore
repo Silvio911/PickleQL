@@ -1,12 +1,10 @@
 # IDE files
 **/xcuserdata/
-target/
-*.orig
-imgs/all
 DerivedData/
 .build/
 *.bin/*
 .DS_Store
+/Packages
 
 #Swift PM
 .swiftpm/config/registries.json

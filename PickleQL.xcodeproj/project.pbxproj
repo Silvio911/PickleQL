@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		A37FA4072D933AB5000E9273 /* Networking in Frameworks */ = {isa = PBXBuildFile; productRef = A37FA4062D933AB5000E9273 /* Networking */; };
+		A3B80EA92D944F270006238E /* Interfaces in Frameworks */ = {isa = PBXBuildFile; productRef = A3B80EA82D944F270006238E /* Interfaces */; };
+		A3C0D2612D944E1E00ADDC99 /* Interfaces in Resources */ = {isa = PBXBuildFile; fileRef = A3C0D2602D944E1E00ADDC99 /* Interfaces */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -24,6 +26,7 @@
 		A371CB302D92B83A0055802D /* Networking */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Networking; sourceTree = "<group>"; };
 		A39B1E692D90AA15009347CC /* PickleQL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PickleQL.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A39B1E7F2D90AA17009347CC /* PickleQLTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PickleQLTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A3C0D2602D944E1E00ADDC99 /* Interfaces */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Interfaces; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -57,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3B80EA92D944F270006238E /* Interfaces in Frameworks */,
 				A37FA4072D933AB5000E9273 /* Networking in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -81,6 +85,7 @@
 		A39B1E602D90AA15009347CC = {
 			isa = PBXGroup;
 			children = (
+				A3C0D2602D944E1E00ADDC99 /* Interfaces */,
 				A371CB302D92B83A0055802D /* Networking */,
 				A39B1E6B2D90AA15009347CC /* PickleQL */,
 				A39B1E822D90AA17009347CC /* PickleQLTests */,
@@ -119,6 +124,7 @@
 			name = PickleQL;
 			packageProductDependencies = (
 				A37FA4062D933AB5000E9273 /* Networking */,
+				A3B80EA82D944F270006238E /* Interfaces */,
 			);
 			productName = PickleQL;
 			productReference = A39B1E692D90AA15009347CC /* PickleQL.app */;
@@ -194,6 +200,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3C0D2612D944E1E00ADDC99 /* Interfaces in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -498,6 +505,10 @@
 		A37FA4062D933AB5000E9273 /* Networking */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Networking;
+		};
+		A3B80EA82D944F270006238E /* Interfaces */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Interfaces;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

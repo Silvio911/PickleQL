@@ -1,5 +1,6 @@
-import Foundation
 import Apollo
+import Foundation
+import Interfaces
 import PickleAPI
 
 final class GraphQLClient {
