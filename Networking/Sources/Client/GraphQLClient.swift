@@ -4,13 +4,13 @@ import Interfaces
 import PickleAPI
 
 public final class GraphQLClient {
-    /// Default GraphQL API URL
-     private static let defaultURL: URL = {
-         guard let url = URL(string: "https://rickandmortyapi.com/graphql") else {
-             preconditionFailure("Invalid GraphQL API URL")
-         }
-         return url
-     }()
+    /// Default GraphQL API URL, ideally sourced from a configuration file.
+    private static let defaultURL: URL = {
+        guard let url = URL(string: "https://rickandmortyapi.com/graphql") else {
+            preconditionFailure("Invalid GraphQL API URL")
+        }
+        return url
+    }()
 
     /// The Apollo client that is used to perform the network requests.
     private let apolloClient: ApolloClient

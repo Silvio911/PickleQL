@@ -1,11 +1,11 @@
 import Foundation
 
-public struct Character {
+public struct Character: Hashable {
     let id: String
-    let name: String
-    let species: String
-    let gender: String
-    let image: String
+    public let name: String
+    public let species: String
+    public let gender: String
+    public let image: String
 
     public init(id: String, name: String, species: String, gender: String, image: String) {
         self.id = id
