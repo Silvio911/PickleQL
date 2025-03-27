@@ -146,7 +146,6 @@ final class CharacterListViewController: UIViewController {
             viewModel.loadData()
             layoutType = .list
         }
-
         collectionView.setCollectionViewLayout(viewHelper.createLayout(for: layoutType), animated: true)
     }
 

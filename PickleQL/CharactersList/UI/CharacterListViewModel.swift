@@ -20,9 +20,9 @@ final class CharacterListViewModel: ObservableObject {
     @Published private(set) var state: State = .loading
     var currentCharacters: [String: [Character]] = [:]
 
-    private let client: GraphQLClient
+    private let client: Client
 
-    init(client: GraphQLClient = .init()) {
+    init(client: Client = GraphQLClient()) {
         self.client = client
     }
 
@@ -33,7 +33,7 @@ final class CharacterListViewModel: ObservableObject {
                     state = .empty
                     return
                 }
-
+                
                 // Group characters by species
                 currentCharacters = Dictionary(grouping: characters, by: { $0.species })
                 state = characters.isEmpty ? .empty : .content(currentCharacters)
