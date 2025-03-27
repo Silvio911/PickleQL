@@ -13,7 +13,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = CharacterListViewController(viewModel: CharacterListViewModel())
+        let navigationController = UINavigationController(
+            rootViewController: CharacterListViewController(viewModel: CharacterListViewModel())
+        )
+        window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
         return true
     }

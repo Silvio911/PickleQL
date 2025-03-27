@@ -39,7 +39,7 @@ public final class GraphQLClient {
                 let image = $0?.image
             else { return nil }
 
-            return Character(id: id, name: name, species: species, gender: gender, image: image)
+            return Character(id: id, name: name, species: species, gender: Gender(gender), image: image)
         }
     }
 }
