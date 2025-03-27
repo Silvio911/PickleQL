@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		A37FA4072D933AB5000E9273 /* Networking in Frameworks */ = {isa = PBXBuildFile; productRef = A37FA4062D933AB5000E9273 /* Networking */; };
 		A3B80EA92D944F270006238E /* Interfaces in Frameworks */ = {isa = PBXBuildFile; productRef = A3B80EA82D944F270006238E /* Interfaces */; };
+		A3B80EB72D9550900006238E /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = A3B80EB62D9550900006238E /* Nuke */; };
+		A3B80EB92D9550900006238E /* NukeExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = A3B80EB82D9550900006238E /* NukeExtensions */; };
 		A3C0D2612D944E1E00ADDC99 /* Interfaces in Resources */ = {isa = PBXBuildFile; fileRef = A3C0D2602D944E1E00ADDC99 /* Interfaces */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +62,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3B80EB72D9550900006238E /* Nuke in Frameworks */,
+				A3B80EB92D9550900006238E /* NukeExtensions in Frameworks */,
 				A3B80EA92D944F270006238E /* Interfaces in Frameworks */,
 				A37FA4072D933AB5000E9273 /* Networking in Frameworks */,
 			);
@@ -125,6 +129,8 @@
 			packageProductDependencies = (
 				A37FA4062D933AB5000E9273 /* Networking */,
 				A3B80EA82D944F270006238E /* Interfaces */,
+				A3B80EB62D9550900006238E /* Nuke */,
+				A3B80EB82D9550900006238E /* NukeExtensions */,
 			);
 			productName = PickleQL;
 			productReference = A39B1E692D90AA15009347CC /* PickleQL.app */;
@@ -183,6 +189,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				A328E3FA2D934D8A00946467 /* XCLocalSwiftPackageReference "Networking/PickleAPI" */,
+				A3B80EB52D9550900006238E /* XCRemoteSwiftPackageReference "Nuke" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = A39B1E6A2D90AA15009347CC /* Products */;
@@ -501,6 +508,17 @@
 		};
 /* End XCLocalSwiftPackageReference section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		A3B80EB52D9550900006238E /* XCRemoteSwiftPackageReference "Nuke" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kean/Nuke.git";
+			requirement = {
+				kind = exactVersion;
+				version = 12.8.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
 		A37FA4062D933AB5000E9273 /* Networking */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -509,6 +527,16 @@
 		A3B80EA82D944F270006238E /* Interfaces */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Interfaces;
+		};
+		A3B80EB62D9550900006238E /* Nuke */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A3B80EB52D9550900006238E /* XCRemoteSwiftPackageReference "Nuke" */;
+			productName = Nuke;
+		};
+		A3B80EB82D9550900006238E /* NukeExtensions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A3B80EB52D9550900006238E /* XCRemoteSwiftPackageReference "Nuke" */;
+			productName = NukeExtensions;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
