@@ -1,7 +1,7 @@
 import Foundation
 
 public struct Character: Hashable {
-    let id: String
+    public let id: String
     public let name: String
     public let species: String
     public let gender: Gender

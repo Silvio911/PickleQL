@@ -29,11 +29,12 @@ final class CharacterListViewModel: ObservableObject {
     func loadData() {
         Task {
             do {
-                guard let characters = try await client.fetchCharacters() else {
+                guard let characters = try await client.fetchFirstPages(2) else {
                     state = .empty
                     return
                 }
 
+                // Group characters by species
                 currentCharacters = Dictionary(grouping: characters, by: { $0.species })
                 state = characters.isEmpty ? .empty : .content(currentCharacters)
             } catch {
