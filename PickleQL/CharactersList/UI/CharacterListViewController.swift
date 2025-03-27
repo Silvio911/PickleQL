@@ -10,22 +10,17 @@ import Interfaces
 import UIKit
 
 final class CharacterListViewController: UIViewController {
-    // MARK: - Types
-
-    private enum LayoutType {
-        case list
-        case orthogonal
-    }
-
     // MARK: - Properties
 
     typealias DataSource = UICollectionViewDiffableDataSource<String, Character>
     typealias DataSourceSnapshot = NSDiffableDataSourceSnapshot<String, Character>
 
-    private var layoutType: LayoutType = .list
     private lazy var dataSource: UICollectionViewDiffableDataSource<String, Character> = makeDataSource()
     private var cancellables = Set<AnyCancellable>()
+
+    private var layoutType: LayoutType = .list
     private var viewModel: CharacterListViewModel
+    private let viewHelper = CharacterListViewHelper()
 
     // MARK: UI Components
 
@@ -38,7 +33,7 @@ final class CharacterListViewController: UIViewController {
     }()
 
     private lazy var collectionView: UICollectionView = {
-        let layout = createListLayout()
+        let layout = viewHelper.createLayout(for: .list)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.contentInset = .zero
@@ -99,22 +94,20 @@ final class CharacterListViewController: UIViewController {
                 switch state {
                 case .loading:
                     self?.updateLoadingView(isLoading: true)
-                    self?.applyDataSourceSnapshot(characters: [])
+                    self?.applyDataSourceSnapshot([:])
                     self?.updateErrorView(display: false)
                 case .content(let characters):
                     self?.updateLoadingView(isLoading: false)
-                    self?.applyDataSourceSnapshot(characters: characters)
+                    self?.applyDataSourceSnapshot(characters)
                     self?.updateErrorView(display: false)
                 case .empty:
-                    self?.applyDataSourceSnapshot(characters: [])
+                    self?.applyDataSourceSnapshot([:])
                     self?.updateLoadingView(isLoading: false)
                     self?.updateErrorView(display: true)
                 }
             }
             .store(in: &cancellables)
     }
-
-    // MARK: - Private methods
 
     private func setupViews() {
         title = "Characters"
@@ -143,78 +136,18 @@ final class CharacterListViewController: UIViewController {
         ])
     }
 
-    private func createLayout(for type: LayoutType) -> UICollectionViewCompositionalLayout {
-        switch type {
-        case .list: createListLayout()
-        case .orthogonal: createOrthogonalScrollingLayout()
-        }
-    }
+    // MARK: - Layout
 
     @objc private func segmentedControlChanged(_ sender: UISegmentedControl) {
-        if case .content(let allCharacters) = viewModel.state {
-            let filteredCharacters: [Character]
-
-            if sender.selectedSegmentIndex == 1 {
-                filteredCharacters = allCharacters.filter { $0.gender == .female }
-                layoutType = .orthogonal
-            } else {
-                filteredCharacters = allCharacters
-                layoutType = .list
-            }
-
-            collectionView.setCollectionViewLayout(createLayout(for: layoutType), animated: true)
-            applyDataSourceSnapshot(characters: filteredCharacters)
+        if sender.selectedSegmentIndex == 1 {
+            viewModel.loadFemaleCharacters()
+            layoutType = .orthogonal
+        } else {
+            viewModel.loadData()
+            layoutType = .list
         }
-    }
 
-    private func createListLayout() -> UICollectionViewCompositionalLayout {
-        return UICollectionViewCompositionalLayout { _, layoutEnvironment in
-            var layoutConfiguration = UICollectionLayoutListConfiguration(appearance: .plain)
-            layoutConfiguration.headerMode = .supplementary
-
-            let layoutSection = NSCollectionLayoutSection.list(
-                using: layoutConfiguration,
-                layoutEnvironment: layoutEnvironment
-            )
-            layoutSection.interGroupSpacing = .zero
-            layoutSection.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: .zero, bottom: 8, trailing: 0)
-            return layoutSection
-        }
-    }
-
-    private func createOrthogonalScrollingLayout() -> UICollectionViewCompositionalLayout {
-        return UICollectionViewCompositionalLayout { _, _ in
-            let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(1.0),
-                heightDimension: .estimated(120)
-            ))
-
-            let group = NSCollectionLayoutGroup.vertical(
-                layoutSize: NSCollectionLayoutSize(
-                    widthDimension: .fractionalWidth(1/3),
-                    heightDimension: .estimated(120)
-                ),
-                subitems: [item]
-            )
-
-            let layoutSection = NSCollectionLayoutSection(group: group)
-            layoutSection.interGroupSpacing = 8
-            layoutSection.orthogonalScrollingBehavior = .continuous
-            layoutSection.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16)
-
-            layoutSection.boundarySupplementaryItems = [
-                NSCollectionLayoutBoundarySupplementaryItem(
-                    layoutSize: NSCollectionLayoutSize(
-                        widthDimension: .fractionalWidth(1.0),
-                        heightDimension: .estimated(40)
-                    ),
-                    elementKind: UICollectionView.elementKindSectionHeader,
-                    alignment: .top
-                )
-            ]
-
-            return layoutSection
-        }
+        collectionView.setCollectionViewLayout(viewHelper.createLayout(for: layoutType), animated: true)
     }
 
     private func makeDataSource() -> DataSource {
@@ -255,29 +188,18 @@ final class CharacterListViewController: UIViewController {
         return dataSource
     }
 
-    private func applyDataSourceSnapshot(characters: [Character]) {
-        if layoutType == .orthogonal {
-            var snapshot = DataSourceSnapshot()
-            snapshot.appendSections(["Female"])
-            snapshot.appendItems(characters)
-            dataSource.apply(snapshot, animatingDifferences: true)
-        } else {
-            let groupedCharacters = Dictionary(grouping: characters, by: { $0.species })
-            var snapshot = DataSourceSnapshot()
+    private func applyDataSourceSnapshot(_ groupedCharacters: [String: [Character]]) {
+        var snapshot = DataSourceSnapshot()
 
-            let sortedSpecies = groupedCharacters.keys.sorted()
-
-            for species in sortedSpecies {
-                snapshot.appendSections([species])
-
-                if let characters = groupedCharacters[species] {
-                    snapshot.appendItems(characters, toSection: species)
-                }
-            }
-
-            dataSource.apply(snapshot, animatingDifferences: true)
+        for (sectionTitle, charactersInSection) in groupedCharacters {
+            snapshot.appendSections([sectionTitle])
+            snapshot.appendItems(charactersInSection, toSection: sectionTitle)
         }
+
+        dataSource.apply(snapshot, animatingDifferences: true)
     }
+
+    // MARK: - Helpers
 
     private func updateLoadingView(isLoading: Bool) {
         if isLoading {

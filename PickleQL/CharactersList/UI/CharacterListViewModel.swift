@@ -13,11 +13,12 @@ import Networking
 final class CharacterListViewModel: ObservableObject {
     enum State: Equatable {
         case loading
-        case content([Character])
+        case content([String: [Character]])
         case empty
     }
 
     @Published private(set) var state: State = .loading
+    var currentCharacters: [String: [Character]] = [:]
 
     private let client: GraphQLClient
 
@@ -33,10 +34,21 @@ final class CharacterListViewModel: ObservableObject {
                     return
                 }
 
-                state = characters.isEmpty ? .empty : .content(characters)
+                currentCharacters = Dictionary(grouping: characters, by: { $0.species })
+                state = characters.isEmpty ? .empty : .content(currentCharacters)
             } catch {
                 state = .empty
             }
         }
+    }
+
+    func loadFemaleCharacters() {
+        let femaleCharacters = currentCharacters
+            .compactMapValues { $0.filter { $0.gender == .female } }
+            .filter { !$0.value.isEmpty }
+
+        state = femaleCharacters.isEmpty
+        ? .empty
+        : .content(["Female": femaleCharacters.values.flatMap { $0 }.sorted { $0.name < $1.name } ])
     }
 }
