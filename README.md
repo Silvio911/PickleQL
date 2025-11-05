@@ -27,4 +27,5 @@ To get started with the app, follow these steps:
    git clone https://github.com/Silvio911/PickleQL.git
 
 ## Demo
-![App Demo](https://github.com/user-attachments/assets/5604a999-63ff-487e-866d-f5068e31dce8)
+![App Demo](https://github.com/user-attachments/assets/48890f29-fc2f-430b-8a36-03cc2baea249)
+
