@@ -1,6 +1,6 @@
 import Foundation
 
-public struct Character: Hashable {
+public struct Character: Hashable, Identifiable {
     public let id: String
     public let name: String
     public let species: String
